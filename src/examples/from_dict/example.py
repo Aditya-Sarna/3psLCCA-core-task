@@ -42,6 +42,30 @@ def execute_analysis(input_data):
         return None
 
 
+def execute_analysis_with_latex(input_data, output_path="LCCA_Report.tex"):
+    """
+    Runs the LCCA analysis and generates a LaTeX report.
+
+    Args:
+        input_data (dict): Project input parameters.
+        output_path (str): Path where the .tex report file is saved.
+    """
+    try:
+        results = run_full_lcc_analysis(
+            input_data,
+            life_cycle_construction_cost_breakdown,
+            latex_report=True,
+            latex_output_path=output_path,
+        )
+        print(f"✔ LaTeX report written to: {output_path}")
+        return results
+
+    except Exception as e:
+        print("✖ Error during LaTeX report generation:")
+        print(e)
+        return None
+
+
 # ============================================================
 # MAIN EXECUTION
 # ============================================================
@@ -64,3 +88,10 @@ if __name__ == "__main__":
         print(json.dumps(results, indent=2))
     else:
         print("No results generated due to error.")
+
+    print("\n--------------------------------------------------")
+    print("Generating LaTeX Report")
+    print("--------------------------------------------------")
+
+    import copy
+    execute_analysis_with_latex(copy.deepcopy(Input_global), "LCCA_Report.tex")

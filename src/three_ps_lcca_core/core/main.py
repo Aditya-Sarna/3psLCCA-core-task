@@ -4,7 +4,13 @@ from .utils.input_validator import ironclad_validator
 from ..inputs.input_global import InputGlobalMetaData
 
 
-def run_full_lcc_analysis(input_data, construction_costs, debug=False):
+def run_full_lcc_analysis(
+    input_data,
+    construction_costs,
+    debug=False,
+    latex_report=False,
+    latex_output_path=None,
+):
     """
     Entry point for the OSDAG LCC module (global RUC mode only).
     Validates input, and computes Life Cycle Stage Costs using the
@@ -13,7 +19,11 @@ def run_full_lcc_analysis(input_data, construction_costs, debug=False):
     Args:
         input_data (dict | InputGlobalMetaData): Project input.
         construction_costs (dict): Initial construction costs.
-        debug (bool, optional): If True, dumps intermediate inputs to JSON.
+        debug (bool, optional): If True, dumps intermediate inputs to JSON files.
+        latex_report (bool, optional): If True, generates a .tex report file.
+            Internally enables debug data collection even if debug=False.
+        latex_output_path (str | None, optional): Path for the .tex file.
+            Defaults to "LCCA_Report.tex" in the current working directory.
 
     Returns:
         dict: Stage-wise LCC results (initial, use, reconstruction, end-of-life).
@@ -35,6 +45,10 @@ def run_full_lcc_analysis(input_data, construction_costs, debug=False):
 
     else:
         raise TypeError("input_data must be a dict or InputGlobalMetaData.")
+
+    # When latex_report=True, enable debug internally to collect breakdown data.
+    # File dumps (JSON) only happen when the caller explicitly passed debug=True.
+    _effective_debug = debug or latex_report
 
     # --- 3. Dump all normalised inputs for debugging ---
     if debug:
@@ -68,9 +82,13 @@ def run_full_lcc_analysis(input_data, construction_costs, debug=False):
         dump_to_file("A0_Validation_report.json", validation_report)
 
     # --- 7. Initialize and Run LCC Calculations ---
-    stage_calc = StageCostCalculator(stage_params, construction_costs, debug)
+    # dump_files=debug ensures JSON dumps only happen when caller set debug=True,
+    # while _effective_debug enables breakdown data collection for latex reports.
+    stage_calc = StageCostCalculator(
+        stage_params, construction_costs, _effective_debug, dump_files=debug
+    )
 
-    return {
+    results = {
         "initial_stage": stage_calc.initial_cost_calculator(),
         "use_stage": stage_calc.use_stage_cost_calculator(),
         "reconstruction": stage_calc.reconstruction(),
@@ -78,3 +96,17 @@ def run_full_lcc_analysis(input_data, construction_costs, debug=False):
         "warnings": validation_report["warnings"],
         "notes": validation_report["info"],
     }
+
+    # --- 8. Generate LaTeX Report if requested ---
+    if latex_report:
+        from .latex.report import generate_latex_report
+
+        output_path = latex_output_path if latex_output_path is not None else "LCCA_Report.tex"
+        generate_latex_report(
+            input_data=input_data,
+            construction_costs=construction_costs,
+            results=results,
+            output_path=output_path,
+        )
+
+    return results

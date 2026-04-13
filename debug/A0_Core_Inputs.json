@@ -1,0 +1,69 @@
+{
+    "input_data": {
+        "general_parameters": {
+            "service_life_years": 75,
+            "analysis_period_years": 150,
+            "discount_rate_percent": 6.7,
+            "inflation_rate_percent": 5.15,
+            "interest_rate_percent": 7.75,
+            "investment_ratio": 0.5,
+            "social_cost_of_carbon_per_mtco2e": 86.4,
+            "currency_conversion": 88.73,
+            "construction_period_months": 5.2,
+            "working_days_per_month": 26,
+            "days_per_month": 30,
+            "use_global_road_user_calculations": true
+        },
+        "daily_road_user_cost_with_vehicular_emissions": {
+            "total_daily_ruc": 128618.886,
+            "total_carbon_emission": {
+                "total_emission_kgCO2e": 772.24519225
+            }
+        },
+        "maintenance_and_stage_parameters": {
+            "use_stage_cost": {
+                "routine": {
+                    "inspection": {
+                        "percentage_of_initial_construction_cost_per_year": 0.1,
+                        "interval_in_years": 1
+                    },
+                    "maintenance": {
+                        "percentage_of_initial_construction_cost_per_year": 0.55,
+                        "percentage_of_initial_carbon_emission_cost": 0.55,
+                        "interval_in_years": 5
+                    }
+                },
+                "major": {
+                    "inspection": {
+                        "percentage_of_initial_construction_cost": 0.5,
+                        "interval_for_repair_and_rehabitation_in_years": 5
+                    },
+                    "repair": {
+                        "percentage_of_initial_construction_cost": 10,
+                        "percentage_of_initial_carbon_emission_cost": 0.55,
+                        "interval_for_repair_and_rehabitation_in_years": 20,
+                        "repairs_duration_months": 3
+                    }
+                },
+                "replacement_costs_for_bearing_and_expansion_joint": {
+                    "percentage_of_super_structure_cost": 12.5,
+                    "interval_of_replacement_in_years": 25,
+                    "duration_of_replacement_in_days": 2
+                }
+            },
+            "end_of_life_stage_costs": {
+                "demolition_and_disposal": {
+                    "percentage_of_initial_construction_cost": 10,
+                    "percentage_of_initial_carbon_emission_cost": 10,
+                    "duration_for_demolition_and_disposal_in_months": 1
+                }
+            }
+        }
+    },
+    "construction_costs": {
+        "initial_construction_cost": 12843979.44,
+        "initial_carbon_emissions_cost": 2065434.91,
+        "superstructure_construction_cost": 9356038.92,
+        "total_scrap_value": 2164095.02
+    }
+}

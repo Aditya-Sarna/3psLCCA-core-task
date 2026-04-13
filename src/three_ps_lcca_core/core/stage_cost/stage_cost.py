@@ -11,9 +11,11 @@ class StageCostCalculator:
         input_params: Dict[str, Any],
         program_inputs: Dict[str, Any],
         debug: bool = False,
+        dump_files: bool = True,
     ):
         self.input_params = input_params
         self.debug = debug
+        self.dump_files = dump_files
 
         general = input_params["general"]
 
@@ -699,6 +701,7 @@ class StageCostCalculator:
             spwf=1,
         )
         time_cost_loan = self.time_cost_loan()
+        breakdown = None
         if self.debug:
             breakdown = {
                 "formulae": {
@@ -726,9 +729,10 @@ class StageCostCalculator:
                 "road_user_cost_breakdown": ruc["debug"],
                 "total_time_cost_of_loan": time_cost_loan["breakdown"],
             }
-            dump_to_file("stage_costs_1-initial_cost_breakdown.json", breakdown)
+            if self.dump_files:
+                dump_to_file("stage_costs_1-initial_cost_breakdown.json", breakdown)
 
-        return {
+        result = {
             "economic": {
                 "initial_construction_cost": self.initial_construction_cost,
                 "time_cost_of_loan": time_cost_loan["total_time_cost_of_loan"],
@@ -741,6 +745,9 @@ class StageCostCalculator:
                 "initial_road_user_cost": ruc["ruc_cost"],
             },
         }
+        if self.debug:
+            result["_debug_breakdown"] = breakdown
+        return result
 
     # ██╗   ██╗███████╗███████╗    ███████╗████████╗ █████╗  ██████╗ ███████╗     ██████╗ ██████╗ ███████╗████████╗     ██████╗ █████╗ ██╗      ██████╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗
     # ██║   ██║██╔════╝██╔════╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝ ██╔════╝    ██╔════╝██╔═══██╗██╔════╝╚══██╔══╝    ██╔════╝██╔══██╗██║     ██╔════╝██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
@@ -766,19 +773,22 @@ class StageCostCalculator:
             self._replacement_costs_for_bearing_and_expansion_joint()
         )
 
+        use_stage_debug_data = None
         if self.debug:
-            dump_to_file(
-                "stage_costs_2-use_stage_cost_breakdown.json",
-                {
-                    "routine_inspection_costs": routine,
-                    "routine_maintenance_and_carbon_costs": periodic_maintenance_and_carbon_costs,
-                    "major_inspection_costs": major_inspection_costs,
-                    "major_repair_carbon_and_road_user_costs": repair_cost_summary,
-                    "replacement_costs_for_bearing_and_expansion_joint": replacement_costs_for_bearing_and_expansion_joint,
-                },
-            )
+            use_stage_debug_data = {
+                "routine_inspection_costs": routine,
+                "routine_maintenance_and_carbon_costs": periodic_maintenance_and_carbon_costs,
+                "major_inspection_costs": major_inspection_costs,
+                "major_repair_carbon_and_road_user_costs": repair_cost_summary,
+                "replacement_costs_for_bearing_and_expansion_joint": replacement_costs_for_bearing_and_expansion_joint,
+            }
+            if self.dump_files:
+                dump_to_file(
+                    "stage_costs_2-use_stage_cost_breakdown.json",
+                    use_stage_debug_data,
+                )
 
-        return {
+        result = {
             "economic": {
                 "routine_inspection_costs": routine["total"],
                 "periodic_maintenance": periodic_maintenance_and_carbon_costs[
@@ -815,6 +825,9 @@ class StageCostCalculator:
                 ],
             },
         }
+        if self.debug:
+            result["_debug_breakdown"] = use_stage_debug_data
+        return result
 
     # ██████╗ ███████╗ ██████╗ ██████╗ ███╗   ██╗███████╗████████╗██████╗ ██╗   ██╗ ██████╗████████╗██╗ ██████╗ ███╗   ██╗
     # ██╔══██╗██╔════╝██╔════╝██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║   ██║██╔════╝╚══██╔══╝██║██╔═══██╗████╗  ██║
@@ -857,50 +870,53 @@ class StageCostCalculator:
         time_cost = self.time_cost_loan(demolition_spwi)
         total_scrap_cost = self.total_scrap_cost * demolition_spwi
 
+        reconstruction_debug_data = None
         if self.debug:
-            dump_to_file(
-                "stage_costs_3-Reconstruction_breakdown.json",
-                {
-                    "present_worth_factor_for_demolition": self._demolition_spwi()[
-                        "debug"
-                    ]["reconstruction_demolition_breakdown"],
-                    "demolition_and_disposal_breakdown": demolition_and_disposal[
-                        "breakdown"
-                    ],
-                    "road_user_and_vehicular_emission_costs_breakdown": road_user_and_vehicular_emission,
-                    "reconstruction_costs_breakdown": reconstruction["breakdown"],
-                    "total_demolition_and_disposal_costs": demolition_and_disposal[
-                        "total_demolition_and_disposal_costs"
-                    ],
-                    "total_demolition_and_disposal_carbon_costs": demolition_and_disposal[
-                        "total_demolition_and_disposal_carbon_costs"
-                    ],
-                    "cost_of_reconstruction_after_demolition": reconstruction[
-                        "total_construction_costs"
-                    ],
-                    "carbon_cost_of_reconstruction_after_demolition": reconstruction[
-                        "total_carbon_costs"
-                    ],
-                    "ruc_demolition": road_user_and_vehicular_emission[
-                        "demolition_road_user_cost"
-                    ],
-                    "ruc_reconstruction": reconstruction["construction_road_user_cost"],
-                    "demolition_vehicular_emission_cost": road_user_and_vehicular_emission[
-                        "demolition_vehicular_emission_cost"
-                    ],
-                    "reconstruction_vehicular_emission_cost": reconstruction[
-                        "construction_vehicular_emission_cost"
-                    ],
-                    "time_cost_of_loan": time_cost["breakdown"],
-                    "total_scrap_value": {
-                        "formula": "total_scrap_cost x demolition_spwi",
-                        "value": total_scrap_cost,
-                        "note": "This value is negative as it represents a salvage value.",
-                    },
+            reconstruction_debug_data = {
+                "present_worth_factor_for_demolition": self._demolition_spwi()[
+                    "debug"
+                ]["reconstruction_demolition_breakdown"],
+                "demolition_and_disposal_breakdown": demolition_and_disposal[
+                    "breakdown"
+                ],
+                "road_user_and_vehicular_emission_costs_breakdown": road_user_and_vehicular_emission,
+                "reconstruction_costs_breakdown": reconstruction["breakdown"],
+                "total_demolition_and_disposal_costs": demolition_and_disposal[
+                    "total_demolition_and_disposal_costs"
+                ],
+                "total_demolition_and_disposal_carbon_costs": demolition_and_disposal[
+                    "total_demolition_and_disposal_carbon_costs"
+                ],
+                "cost_of_reconstruction_after_demolition": reconstruction[
+                    "total_construction_costs"
+                ],
+                "carbon_cost_of_reconstruction_after_demolition": reconstruction[
+                    "total_carbon_costs"
+                ],
+                "ruc_demolition": road_user_and_vehicular_emission[
+                    "demolition_road_user_cost"
+                ],
+                "ruc_reconstruction": reconstruction["construction_road_user_cost"],
+                "demolition_vehicular_emission_cost": road_user_and_vehicular_emission[
+                    "demolition_vehicular_emission_cost"
+                ],
+                "reconstruction_vehicular_emission_cost": reconstruction[
+                    "construction_vehicular_emission_cost"
+                ],
+                "time_cost_of_loan": time_cost["breakdown"],
+                "total_scrap_value": {
+                    "formula": "total_scrap_cost x demolition_spwi",
+                    "value": total_scrap_cost,
+                    "note": "This value is negative as it represents a salvage value.",
                 },
-            )
+            }
+            if self.dump_files:
+                dump_to_file(
+                    "stage_costs_3-Reconstruction_breakdown.json",
+                    reconstruction_debug_data,
+                )
 
-        return {
+        result = {
             "economic": {
                 "total_demolition_and_disposal_costs": demolition_and_disposal[
                     "total_demolition_and_disposal_costs"
@@ -932,6 +948,9 @@ class StageCostCalculator:
                 "ruc_reconstruction": reconstruction["construction_road_user_cost"],
             },
         }
+        if self.debug:
+            result["_debug_breakdown"] = reconstruction_debug_data
+        return result
 
     # ███████╗███╗   ██╗██████╗      ██████╗ ███████╗    ██╗     ██╗███████╗███████╗    ███████╗████████╗ █████╗  ██████╗ ███████╗     ██████╗ ██████╗ ███████╗████████╗███████╗
     # ██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗██╔════╝    ██║     ██║██╔════╝██╔════╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝ ██╔════╝    ██╔════╝██╔═══██╗██╔════╝╚══██╔══╝██╔════╝
@@ -959,38 +978,41 @@ class StageCostCalculator:
             )
         )
         total_scrap_cost = self.total_scrap_cost * demolition_spwi
+        eol_debug_data = None
         if self.debug:
-            dump_to_file(
-                "stage_costs_4-end_of_life_breakdown.json",
-                {
-                    "present_worth_factor_for_demolition": demolition_spwi_full[
-                        "debug"
-                    ]["final_demolition_breakdown"],
-                    "demolition_and_disposal_breakdown": demolition_and_disposal[
-                        "breakdown"
-                    ],
-                    "total_demolition_and_disposal_costs": demolition_and_disposal[
-                        "total_demolition_and_disposal_costs"
-                    ],
-                    "total_demolition_and_disposal_carbon_costs": demolition_and_disposal[
-                        "total_demolition_and_disposal_carbon_costs"
-                    ],
-                    "cost_of_reconstruction_after_demolition": demolition_and_disposal[
-                        "cost_of_reconstruction_after_demolition"
-                    ],
-                    "ruc_demolition": road_user_and_vehicular_emission[
-                        "demolition_road_user_cost"
-                    ],
-                    "demolition_vehicular_emission_cost": road_user_and_vehicular_emission[
-                        "demolition_vehicular_emission_cost"
-                    ],
-                    "total_scrap_value": {
-                        "formula": "total_scrap_cost x demolition_spwi",
-                        "value": total_scrap_cost,
-                    },
+            eol_debug_data = {
+                "present_worth_factor_for_demolition": demolition_spwi_full[
+                    "debug"
+                ]["final_demolition_breakdown"],
+                "demolition_and_disposal_breakdown": demolition_and_disposal[
+                    "breakdown"
+                ],
+                "total_demolition_and_disposal_costs": demolition_and_disposal[
+                    "total_demolition_and_disposal_costs"
+                ],
+                "total_demolition_and_disposal_carbon_costs": demolition_and_disposal[
+                    "total_demolition_and_disposal_carbon_costs"
+                ],
+                "cost_of_reconstruction_after_demolition": demolition_and_disposal[
+                    "cost_of_reconstruction_after_demolition"
+                ],
+                "ruc_demolition": road_user_and_vehicular_emission[
+                    "demolition_road_user_cost"
+                ],
+                "demolition_vehicular_emission_cost": road_user_and_vehicular_emission[
+                    "demolition_vehicular_emission_cost"
+                ],
+                "total_scrap_value": {
+                    "formula": "total_scrap_cost x demolition_spwi",
+                    "value": total_scrap_cost,
                 },
-            )
-        return {
+            }
+            if self.dump_files:
+                dump_to_file(
+                    "stage_costs_4-end_of_life_breakdown.json",
+                    eol_debug_data,
+                )
+        result = {
             "economic": {
                 "total_demolition_and_disposal_costs": demolition_and_disposal[
                     "total_demolition_and_disposal_costs"
@@ -1011,3 +1033,6 @@ class StageCostCalculator:
                 ],
             },
         }
+        if self.debug:
+            result["_debug_breakdown"] = eol_debug_data
+        return result

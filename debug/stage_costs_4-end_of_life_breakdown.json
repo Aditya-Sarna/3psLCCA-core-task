@@ -1,0 +1,35 @@
+{
+    "present_worth_factor_for_demolition": {
+        "150": 0.111
+    },
+    "demolition_and_disposal_breakdown": {
+        "formulae": {
+            "demolition_cost": "initial_cost_of_construction x percentage_of_initial_construction_cost / 100",
+            "demolition_carbon_cost": "cost_of_initial_carbon_emissions_in x percentage_of_initial_carbon_emission_cost / 100",
+            "cost_of_reconstruction_after_demolition": "initial_cost_of_construction",
+            "present_value_of_demolition_costs": "demolition_cost x demolition_spwi",
+            "present_value_of_demolition_carbon_costs": "demolition_carbon_cost x demolition_spwi",
+            "present_value_of_reconstruction_costs": "initial_cost_of_construction x demolition_spwi"
+        },
+        "inputs": {
+            "initial_cost_of_construction": 12843979.44,
+            "cost_of_initial_carbon_emissions_in": 2065434.91,
+            "percentage_of_initial_construction_cost": 10,
+            "percentage_of_initial_carbon_emission_cost": 10
+        },
+        "computed_values": {
+            "demolition_cost": 1284397.944,
+            "demolition_carbon_cost": 206543.49099999998,
+            "demolition_spwi": 0.111
+        }
+    },
+    "total_demolition_and_disposal_costs": 142568.17178399998,
+    "total_demolition_and_disposal_carbon_costs": 22926.327501,
+    "cost_of_reconstruction_after_demolition": 1425681.71784,
+    "ruc_demolition": 428300.89,
+    "demolition_vehicular_emission_cost": 19714.4,
+    "total_scrap_value": {
+        "formula": "total_scrap_cost x demolition_spwi",
+        "value": 240214.54722
+    }
+}

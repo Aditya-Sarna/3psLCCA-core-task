@@ -1,0 +1,95 @@
+{
+    "present_worth_factor_for_demolition": {
+        "75.52": 0.331
+    },
+    "demolition_and_disposal_breakdown": {
+        "formulae": {
+            "demolition_cost": "initial_cost_of_construction x percentage_of_initial_construction_cost / 100",
+            "demolition_carbon_cost": "cost_of_initial_carbon_emissions_in x percentage_of_initial_carbon_emission_cost / 100",
+            "cost_of_reconstruction_after_demolition": "initial_cost_of_construction",
+            "present_value_of_demolition_costs": "demolition_cost x demolition_spwi",
+            "present_value_of_demolition_carbon_costs": "demolition_carbon_cost x demolition_spwi",
+            "present_value_of_reconstruction_costs": "initial_cost_of_construction x demolition_spwi"
+        },
+        "inputs": {
+            "initial_cost_of_construction": 12843979.44,
+            "cost_of_initial_carbon_emissions_in": 2065434.91,
+            "percentage_of_initial_construction_cost": 10,
+            "percentage_of_initial_carbon_emission_cost": 10
+        },
+        "computed_values": {
+            "demolition_cost": 1284397.944,
+            "demolition_carbon_cost": 206543.49099999998,
+            "demolition_spwi": 0.331
+        }
+    },
+    "road_user_and_vehicular_emission_costs_breakdown": {
+        "demolition_road_user_cost_breakdown": {
+            "daily_ruc": 128618.89,
+            "duration_days": 30,
+            "spwf_applied": 0.331
+        },
+        "demolition_road_user_cost": 1277185.54,
+        "demolition_vehicular_emission_cost_breakdown": {
+            "daily_ruc": 128618.89,
+            "duration_days": 30,
+            "spwf_applied": 0.331
+        },
+        "demolition_vehicular_emission_cost": 58788.0
+    },
+    "reconstruction_costs_breakdown": {
+        "formulae": {
+            "present_value_of_construction_costs": "initial_cost_of_construction x sum_of_present_worth_factor",
+            "present_value_of_carbon_costs": "cost_of_initial_carbon_emissions_in x sum_of_present_worth_factor"
+        },
+        "inputs": {
+            "initial_cost_of_construction": 12843979.44,
+            "cost_of_initial_carbon_emissions_in": 2065434.91,
+            "sum_of_present_worth_factor": 0.331
+        },
+        "computed_values": {
+            "present_value_of_construction_costs": 4251357.19464,
+            "present_value_of_carbon_costs": 683658.95521,
+            "construction_road_user_cost": 6641364.8,
+            "construction_vehicular_emission_cost": 305697.6,
+            "construction_road_user_cost_breakdown": {
+                "daily_ruc": 128618.89,
+                "duration_days": 156,
+                "spwf_applied": 0.331
+            },
+            "construction_vehicular_emission_cost_breakdown": {
+                "daily_ruc": 128618.89,
+                "duration_days": 156,
+                "spwf_applied": 0.331
+            }
+        }
+    },
+    "total_demolition_and_disposal_costs": 425135.71946399997,
+    "total_demolition_and_disposal_carbon_costs": 68365.895521,
+    "cost_of_reconstruction_after_demolition": 4251357.19464,
+    "carbon_cost_of_reconstruction_after_demolition": 683658.95521,
+    "ruc_demolition": 1277185.54,
+    "ruc_reconstruction": 6641364.8,
+    "demolition_vehicular_emission_cost": 58788.0,
+    "reconstruction_vehicular_emission_cost": 305697.6,
+    "time_cost_of_loan": {
+        "formulae": {
+            "time_cost_of_loan": "initial_cost_of_construction x interest_rate x time_for_construction_years x investment_ratio x sum_of_present_worth_factor"
+        },
+        "inputs": {
+            "initial_cost_of_construction": 12843979.44,
+            "interest_rate": 0.0775,
+            "time_for_construction_years": 0.43333333333333335,
+            "investment_ratio": 0.5,
+            "sum_of_present_worth_factor": 0.331
+        },
+        "computed_values": {
+            "time_cost_of_loan": 71387.37289333
+        }
+    },
+    "total_scrap_value": {
+        "formula": "total_scrap_cost x demolition_spwi",
+        "value": 716315.4516200001,
+        "note": "This value is negative as it represents a salvage value."
+    }
+}

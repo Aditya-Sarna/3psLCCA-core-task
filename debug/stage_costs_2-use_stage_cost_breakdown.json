@@ -1,0 +1,412 @@
+{
+    "routine_inspection_costs": {
+        "breakdown": {
+            "formulae": {
+                "routine_inspection_cost_per_year": "initial_cost_of_construction x percentage_of_initial_construction_cost_per_year / 100",
+                "present_value_of_routine_inspection_costs": "routine_inspection_cost_per_year x present_worth_factor"
+            },
+            "inputs": {
+                "initial_cost_of_construction": 12843979.44,
+                "percentage_of_initial_construction_cost_per_year": 0.1,
+                "interval_in_years": 1
+            },
+            "computed_values": {
+                "routine_inspection_cost_per_year": 12843.979440000001,
+                "sum_of_present_worth_factor": 59.368
+            },
+            "sum_of_present_worth_factor_breakdown": {
+                "total": 59.368,
+                "breakdown": {
+                    "year_to_pwf": {
+                        "1.43": 0.979,
+                        "2.43": 0.965,
+                        "3.43": 0.951,
+                        "4.43": 0.937,
+                        "5.43": 0.924,
+                        "6.43": 0.91,
+                        "7.43": 0.897,
+                        "8.43": 0.884,
+                        "9.43": 0.871,
+                        "10.43": 0.858,
+                        "11.43": 0.846,
+                        "12.43": 0.834,
+                        "13.43": 0.822,
+                        "14.43": 0.81,
+                        "15.43": 0.798,
+                        "16.43": 0.786,
+                        "17.43": 0.775,
+                        "18.43": 0.764,
+                        "19.43": 0.753,
+                        "20.43": 0.742,
+                        "21.43": 0.731,
+                        "22.43": 0.72,
+                        "23.43": 0.71,
+                        "24.43": 0.699,
+                        "25.43": 0.689,
+                        "26.43": 0.679,
+                        "27.43": 0.669,
+                        "28.43": 0.66,
+                        "29.43": 0.65,
+                        "30.43": 0.641,
+                        "31.43": 0.631,
+                        "32.43": 0.622,
+                        "33.43": 0.613,
+                        "34.43": 0.604,
+                        "35.43": 0.595,
+                        "36.43": 0.587,
+                        "37.43": 0.578,
+                        "38.43": 0.57,
+                        "39.43": 0.562,
+                        "40.43": 0.553,
+                        "41.43": 0.545,
+                        "42.43": 0.537,
+                        "43.43": 0.53,
+                        "44.43": 0.522,
+                        "45.43": 0.514,
+                        "46.43": 0.507,
+                        "47.43": 0.5,
+                        "48.43": 0.492,
+                        "49.43": 0.485,
+                        "50.43": 0.478,
+                        "51.43": 0.471,
+                        "52.43": 0.464,
+                        "53.43": 0.458,
+                        "54.43": 0.451,
+                        "55.43": 0.444,
+                        "56.43": 0.438,
+                        "57.43": 0.432,
+                        "58.43": 0.425,
+                        "59.43": 0.419,
+                        "60.43": 0.413,
+                        "61.43": 0.407,
+                        "62.43": 0.401,
+                        "63.43": 0.395,
+                        "64.43": 0.39,
+                        "65.43": 0.384,
+                        "66.43": 0.378,
+                        "67.43": 0.373,
+                        "68.43": 0.367,
+                        "69.43": 0.362,
+                        "70.43": 0.357,
+                        "71.43": 0.352,
+                        "72.43": 0.346,
+                        "73.43": 0.341,
+                        "74.43": 0.337,
+                        "76.87": 0.325,
+                        "77.87": 0.32,
+                        "78.87": 0.315,
+                        "79.87": 0.311,
+                        "80.87": 0.306,
+                        "81.87": 0.302,
+                        "82.87": 0.297,
+                        "83.87": 0.293,
+                        "84.87": 0.289,
+                        "85.87": 0.285,
+                        "86.87": 0.28,
+                        "87.87": 0.276,
+                        "88.87": 0.272,
+                        "89.87": 0.268,
+                        "90.87": 0.265,
+                        "91.87": 0.261,
+                        "92.87": 0.257,
+                        "93.87": 0.253,
+                        "94.87": 0.25,
+                        "95.87": 0.246,
+                        "96.87": 0.242,
+                        "97.87": 0.239,
+                        "98.87": 0.235,
+                        "99.87": 0.232,
+                        "100.87": 0.229,
+                        "101.87": 0.225,
+                        "102.87": 0.222,
+                        "103.87": 0.219,
+                        "104.87": 0.216,
+                        "105.87": 0.212,
+                        "106.87": 0.209,
+                        "107.87": 0.206,
+                        "108.87": 0.203,
+                        "109.87": 0.2,
+                        "110.87": 0.197,
+                        "111.87": 0.195,
+                        "112.87": 0.192,
+                        "113.87": 0.189,
+                        "114.87": 0.186,
+                        "115.87": 0.183,
+                        "116.87": 0.181,
+                        "117.87": 0.178,
+                        "118.87": 0.176,
+                        "119.87": 0.173,
+                        "120.87": 0.171,
+                        "121.87": 0.168,
+                        "122.87": 0.166,
+                        "123.87": 0.163,
+                        "124.87": 0.161,
+                        "125.87": 0.159,
+                        "126.87": 0.156,
+                        "127.87": 0.154,
+                        "128.87": 0.152,
+                        "129.87": 0.15,
+                        "130.87": 0.147,
+                        "131.87": 0.145,
+                        "132.87": 0.143,
+                        "133.87": 0.141,
+                        "134.87": 0.139,
+                        "135.87": 0.137,
+                        "136.87": 0.135,
+                        "137.87": 0.133,
+                        "138.87": 0.131,
+                        "139.87": 0.129,
+                        "140.87": 0.127,
+                        "141.87": 0.125,
+                        "142.87": 0.124,
+                        "143.87": 0.122,
+                        "144.87": 0.12,
+                        "145.87": 0.118,
+                        "146.87": 0.117,
+                        "147.87": 0.115,
+                        "148.87": 0.113,
+                        "149.87": 0.112
+                    },
+                    "construction_period": 0.43333333333333335,
+                    "service_life": 75,
+                    "interval": 1
+                }
+            },
+            "total_routine_inspection_costs": 762521.37139392
+        },
+        "total": 762521.37139392
+    },
+    "routine_maintenance_and_carbon_costs": {
+        "breakdown": {
+            "formulae": {
+                "routine_maintenance_cost_per_year": "initial_cost_of_construction x percentage_of_initial_construction_cost_per_year / 100",
+                "routine_carbon_cost_per_year": "cost_of_initial_carbon_emissions_in x percentage_of_initial_cabron_emission_cost / 100",
+                "present_value_of_routine_maintenance_costs": "routine_maintenance_cost_per_year x present_worth_factor",
+                "present_value_of_routine_carbon_costs": "routine_carbon_cost_per_year x present_worth_factor"
+            },
+            "inputs": {
+                "initial_cost_of_construction": 12843979.44,
+                "cost_of_initial_carbon_emissions_in": 2065434.91,
+                "percentage_of_initial_construction_cost_per_year": 0.55,
+                "percentage_of_initial_cabron_emission_cost": 0.55,
+                "interval_in_years": 5
+            },
+            "computed_values": {
+                "routine_maintenance_cost_per_year": 70641.88692,
+                "routine_carbon_cost_per_year": 11359.892005,
+                "sum_of_present_worth_factor": 11.173
+            },
+            "sum_of_present_worth_factor_breakdown": {
+                "total": 11.173,
+                "breakdown": {
+                    "year_to_pwf": {
+                        "5.43": 0.924,
+                        "10.43": 0.858,
+                        "15.43": 0.798,
+                        "20.43": 0.742,
+                        "25.43": 0.689,
+                        "30.43": 0.641,
+                        "35.43": 0.595,
+                        "40.43": 0.553,
+                        "45.43": 0.514,
+                        "50.43": 0.478,
+                        "55.43": 0.444,
+                        "60.43": 0.413,
+                        "65.43": 0.384,
+                        "70.43": 0.357,
+                        "80.87": 0.306,
+                        "85.87": 0.285,
+                        "90.87": 0.265,
+                        "95.87": 0.246,
+                        "100.87": 0.229,
+                        "105.87": 0.212,
+                        "110.87": 0.197,
+                        "115.87": 0.183,
+                        "120.87": 0.171,
+                        "125.87": 0.159,
+                        "130.87": 0.147,
+                        "135.87": 0.137,
+                        "140.87": 0.127,
+                        "145.87": 0.118
+                    },
+                    "construction_period": 0.43333333333333335,
+                    "service_life": 75,
+                    "interval": 5
+                }
+            },
+            "total_routine_maintenance_costs": 789281.80255716,
+            "total_routine_carbon_costs": 126924.073371865
+        },
+        "total_maintenance_costs": 789281.80255716,
+        "total_carbon_costs": 126924.073371865
+    },
+    "major_inspection_costs": {
+        "breakdown": {
+            "formulae": {
+                "major_inspection_cost": "initial_cost_of_construction x percentage_of_initial_construction_cost / 100",
+                "present_value_of_major_inspection_costs": "major_inspection_cost x present_worth_factor"
+            },
+            "inputs": {
+                "initial_cost_of_construction": 12843979.44,
+                "percentage_of_initial_construction_cost_for_inspection": 0.5,
+                "interval_for_repair_and_rehabitation_in_years_for_inspection": 5
+            },
+            "computed_values": {
+                "major_inspection_cost": 64219.8972,
+                "sum_of_present_worth_factor_for_inspection": 11.173
+            },
+            "major_inspection_present_worth_factor_breakdown": {
+                "total": 11.173,
+                "breakdown": {
+                    "year_to_pwf": {
+                        "5.43": 0.924,
+                        "10.43": 0.858,
+                        "15.43": 0.798,
+                        "20.43": 0.742,
+                        "25.43": 0.689,
+                        "30.43": 0.641,
+                        "35.43": 0.595,
+                        "40.43": 0.553,
+                        "45.43": 0.514,
+                        "50.43": 0.478,
+                        "55.43": 0.444,
+                        "60.43": 0.413,
+                        "65.43": 0.384,
+                        "70.43": 0.357,
+                        "80.87": 0.306,
+                        "85.87": 0.285,
+                        "90.87": 0.265,
+                        "95.87": 0.246,
+                        "100.87": 0.229,
+                        "105.87": 0.212,
+                        "110.87": 0.197,
+                        "115.87": 0.183,
+                        "120.87": 0.171,
+                        "125.87": 0.159,
+                        "130.87": 0.147,
+                        "135.87": 0.137,
+                        "140.87": 0.127,
+                        "145.87": 0.118
+                    },
+                    "construction_period": 0.43333333333333335,
+                    "service_life": 75,
+                    "interval": 5
+                }
+            }
+        },
+        "total_major_inspection_costs": 717528.9114156
+    },
+    "major_repair_carbon_and_road_user_costs": {
+        "breakdown": {
+            "formulae": {
+                "major_repair_cost": "initial_cost_of_construction x percentage_of_initial_construction_cost / 100",
+                "major_repair_carbon_cost": "cost_of_initial_carbon_emissions_in x percentage_of_initial_carbon_emission_cost / 100",
+                "present_value_of_major_repair_costs": "major_repair_cost x present_worth_factor",
+                "present_value_of_major_repair_carbon_costs": "major_repair_carbon_cost x present_worth_factor",
+                "road_user_cost": "calculated based on disruption duration and daily road user cost",
+                "vehicular_emission_cost": "calculated based on disruption duration and daily vehicular emission cost"
+            },
+            "inputs": {
+                "initial_cost_of_construction": 12843979.44,
+                "cost_of_initial_carbon_emissions_in": 2065434.91,
+                "percentage_of_initial_construction_cost_for_repair": 10,
+                "percentage_of_initial_carbon_emission_cost": 0.55,
+                "interval_for_repair_and_rehabitation_in_years_for_repair": 20,
+                "repairs_duration_months": 3,
+                "disruption_days": 90
+            },
+            "computed_values": {
+                "major_repair_cost": 1284397.944,
+                "major_repair_carbon_cost": 11359.892005,
+                "sum_of_present_worth_factor_for_repair": 2.274,
+                "road_user_cost": 26323141.21,
+                "vehicular_emission_cost": 1211636.67
+            },
+            "major_repair_present_worth_factor_breakdown": {
+                "total": 2.274,
+                "breakdown": {
+                    "year_to_pwf": {
+                        "20.43": 0.742,
+                        "40.43": 0.553,
+                        "60.43": 0.413,
+                        "95.87": 0.246,
+                        "115.87": 0.183,
+                        "135.87": 0.137
+                    },
+                    "construction_period": 0.43333333333333335,
+                    "service_life": 75,
+                    "interval": 20
+                }
+            },
+            "road_user_cost_breakdown": {
+                "daily_ruc": 128618.89,
+                "duration_days": 90,
+                "spwf_applied": 2.274
+            },
+            "sum_of_present_worth_factor_breakdown": {
+                "total": 2.274,
+                "breakdown": {
+                    "year_to_pwf": {
+                        "20.43": 0.742,
+                        "40.43": 0.553,
+                        "60.43": 0.413,
+                        "95.87": 0.246,
+                        "115.87": 0.183,
+                        "135.87": 0.137
+                    },
+                    "construction_period": 0.43333333333333335,
+                    "service_life": 75,
+                    "interval": 20
+                }
+            }
+        },
+        "total_major_repair_costs": 2920720.924656,
+        "total_major_repair_carbon_costs": 25832.39441937,
+        "total_major_repair_road_user_costs": 26323141.21,
+        "total_major_repair_vehicular_emission_costs": 1211636.67
+    },
+    "replacement_costs_for_bearing_and_expansion_joint": {
+        "breakdown": {
+            "formulae": {
+                "replacement_cost": "cost_of_super_structure x percentage_of_super_structure_cost / 100",
+                "present_value_of_replacement_costs": "replacement_cost x present_worth_factor",
+                "road_user_cost": "calculated based on duration of replacement and daily road user cost",
+                "vehicular_emission_cost": "calculated based on duration of replacement and daily vehicular emission cost"
+            },
+            "inputs": {
+                "cost_of_super_structure": 9356038.92,
+                "percentage_of_super_structure_cost": 12.5,
+                "interval_for_replacement_in_years": 25,
+                "duration_of_replacement_in_days": 2
+            },
+            "computed_values": {
+                "replacement_cost": 1169504.865,
+                "sum_of_present_worth_factor_for_replacement": 1.554,
+                "road_user_cost": 399747.5,
+                "vehicular_emission_cost": 18400.11
+            },
+            "present_worth_factor_breakdown": {
+                "total": 1.554,
+                "breakdown": {
+                    "year_to_pwf": {
+                        "25.43": 0.689,
+                        "50.43": 0.478,
+                        "100.87": 0.229,
+                        "125.87": 0.159
+                    },
+                    "construction_period": 0.43333333333333335,
+                    "service_life": 75,
+                    "interval": 25
+                }
+            },
+            "road_user_cost_breakdown": {
+                "daily_ruc": 128618.89,
+                "duration_days": 2,
+                "spwf_applied": 1.554
+            }
+        },
+        "total_replacement_costs": 1817410.56021,
+        "total_replacement_road_user_costs": 399747.5,
+        "total_replacement_vehicular_emission_costs": 18400.11
+    }
+}

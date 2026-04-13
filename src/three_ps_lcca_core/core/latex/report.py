@@ -923,7 +923,7 @@ def _section_summary(results: Dict[str, Any]) -> str:
                     if isinstance(v, (int, float)):
                         cat_total += v
                         lines.append(
-                            f"  [{stage_name}] {_key_to_label(k)} & {_fmt(v, 2)} \\\\"
+                            f"  \\mbox{{[{stage_name}]}} {_key_to_label(k)} & {_fmt(v, 2)} \\\\"
                         )
         lines.append(r"\midrule")
         lines.append(f"  \\textbf{{Subtotal}} & \\textbf{{{_fmt(cat_total, 2)}}} \\\\")
